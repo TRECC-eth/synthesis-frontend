@@ -239,7 +239,7 @@ graph LR
 
 **1. Clone the repo**
 ```bash
-git clone <repo-url>
+git clone https://github.com/TRECC-eth/Trecc-synthesis
 cd Trecc-synthesis
 ```
 
@@ -317,8 +317,3 @@ sequenceDiagram
 - **Coinbase Vault** — Coinbase-powered agent execution wallets and vault infrastructure
 - **Intent-based UX** — Elsa AI co-pilot translates natural language to contract calls
 
----
-
-## License
-
-MIT
