@@ -32,6 +32,15 @@ graph LR
 
 ---
 
+## Agent Data Files
+
+| File | Path | Description |
+|---|---|---|
+| `agent.json` | `TRECC_APP/data/agent.json` | Agent identity and configuration data |
+| `agent_log.json` | `TRECC_APP/data/agent_log.json` | Agent activity and interaction logs |
+
+---
+
 ## Monorepo Structure
 
 ```mermaid
