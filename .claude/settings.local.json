@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(curl -s \"https://synthesis.md/_astro/hack.astro_astro_type_script_index_0_lang.6osesSNh.js\")"
-    ]
-  }
-}
