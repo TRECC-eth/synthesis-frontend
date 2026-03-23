@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt, useReadContract } from 'wagmi';
 import { ShieldCheck, UserPlus, Loader2, Zap } from 'lucide-react';
 import { registryABI } from '../constants/abi/registryAbi';
@@ -53,6 +53,28 @@ export default function AgentRegistry({ onAgentMinted }: AgentRegistryProps) {
     query: { enabled: isSuccess && tokenId !== undefined },
   });
 
+  // Save agent.json and agent_log.json once tokenId is available after success, then redirect
+  const savedRef = useRef(false);
+  useEffect(() => {
+    if (isSuccess && tokenId !== undefined && address && !savedRef.current) {
+      savedRef.current = true;
+      fetch('/api/agent/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ensName,
+          operatorWallet: address,
+          tokenId: tokenId.toString(),
+        }),
+      })
+        .then(() => onAgentMinted?.())
+        .catch((err) => {
+          console.error('Failed to save agent files:', err);
+          onAgentMinted?.();
+        });
+    }
+  }, [isSuccess, tokenId, address, ensName, onAgentMinted]);
+
   const handleRegister = async () => {
     if (!ensName) return;
     try {
@@ -63,7 +85,6 @@ export default function AgentRegistry({ onAgentMinted }: AgentRegistryProps) {
         args: [ensName, ''],
         gas: BigInt(500000),
       });
-      onAgentMinted?.();
     } catch {
       // User rejected or tx failed; don't redirect
     }

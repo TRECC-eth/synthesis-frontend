@@ -1,0 +1,19 @@
+{
+  "agent_name": "https://itsmeelsa/find-best-yield/uniswap",
+  "operator_wallet": "0x7224F3c2E7c97Bbde716d123C3Ad6865AdAA7080",
+  "erc_8004_identity": "0xc2c6f9c0668Eb1C22E6EE8666e47633945b33329",
+  "supported_tools": [
+    "Base Sepolia RPC",
+    "GitHub API",
+    "1inch Router"
+  ],
+  "compute_constraints": {
+    "max_api_calls_per_task": 50,
+    "max_token_usage": 100000
+  },
+  "task_categories": [
+    "DeFi Execution",
+    "On-chain Verification",
+    "Data Gathering"
+  ]
+}
